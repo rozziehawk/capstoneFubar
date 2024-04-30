@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import CountryInfo from './CountryInfo';
+import DisplayCountry from './DisplayCountry';
+import { useNavigate } from "react-router-dom";
 
 const GetCountryForm = () => {
-/* const initialState = {
-    username: "",
-    email: "",
-    password: ""
-  }
-  */
+
+  const navigate = useNavigate();
+
   function getCountryInfo(country) {
-    // get the lists of items from the memu api and set them as state variable
+
+        // get the lists of items from the memu api and set them as state variable
     let countryData = CountryInfo.getCountryInfo();
 
     //setCountry(country);
@@ -17,7 +17,7 @@ const GetCountryForm = () => {
     //setIsLoading(false);
     return countryData;
   }
-
+    
     const [country, setCountry] = useState("United States");
     const handleChange = (e) => {
     setCountry(e.target.value);
@@ -27,9 +27,17 @@ const GetCountryForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     
+    
     alert(`Country Name, ${country}`);
     let countryData = getCountryInfo(country);
-    setCountry("");
+    /*return (
+      <div className="DisplayCountry">
+        <DisplayCountry />
+      </div>
+      )
+      */
+    //setCountry("");
+    navigate('/Display', {countryData});
   }
 
   return (
